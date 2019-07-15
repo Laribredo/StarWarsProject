@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  	<style type="text/css">
+  		body {
+  			overflow-x: hidden;
+  			background:url('https://www.boonshoftmuseum.org/uploads/general/planets_of_star_wars.jpg');
+  			background-size: 100%;
+  			background-position: center;
+  		}
+
+  		.img-prin
+  		{
+  			height: 55%;
+  			width: 100%;
+  		}
+
+  		.btn-dark {
+  			margin-left: 10px;
+  		}
+  	</style>
+  </head>
+  <body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  		<a class="navbar-brand" href="#">StarWarsPlanets</a>
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  		</button>
+  		<div class="collapse navbar-collapse dark-bg" id="navbarNavAltMarkup">
+    		<div class="navbar-nav">
+      			<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+      			<a class="nav-item nav-link" href="#">Documentação</a>
+    		</div>
+  		</div>
+	</nav>
+	<div class="row justify-content-center">
+		<div class="col-8" style="background: white; padding: 25px; margin-top: 10%;">
+    		<div class="col-12">
+    			<h2 class="text-center">API de Planetas Star Wars</h2>
+    		</div>
+    		<div class="col-12 text-center">
+    			<p> API que disponibiliza os dados dos planetas de Star Wars</p>
+    		</div>
+    		<div class="col-12 text-center">
+    			<button id="cadastroPlaneta" type="button" class="btn btn-dark">Cadastrar Planeta</button>
+    			<button type="button" onclick="" class="btn btn-dark">Como Usar a Api</button>
+    		</div>
+    	</div>
+    	<div id="formCadastro" class="col-8 invisible" style="background:white; margin-bottom: 10%; ">
+    		<form action="/add" method="post">
+			  	<div class="form-group">
+			    	<label for="NomePlaneta">Nome</label>
+			    	<input name="NomePlaneta" type="text" class="form-control" id="NomePlaneta" placeholder="Alderaan"></input>
+			  	</div>
+			  	<div class="form-group">
+			    	<label for="ClimaPlaneta">Clima</label>
+			    	<input name="ClimaPlaneta" type="text" class="form-control" id="ClimaPlaneta" placeholder="temperate"></input>
+			  	</div>
+			  	<div class="form-group">
+			    	<label for="TerrenoPlaneta">Terreno</label>
+			    	<input name="TerrenoPlaneta" type="text" class="form-control" id="TerrenoPlaneta" placeholder="grasslands" ></input>
+			  	</div>
+			  	<div class="col-12 text-right" style="padding: 10px;">
+					<button type="submit" class="btn btn-dark">Cadastrar</button>
+				</div>	
+			</form>	
+    	</div>
+  	</div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+		$(document).ready(function(){
+		  $("#cadastroPlaneta").click(function(){
+		    $("#formCadastro").toggleClass("invisible","visible");
+		  });
+		});
+	</script>
+  </body>
+</html>
