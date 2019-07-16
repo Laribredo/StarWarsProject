@@ -8,6 +8,9 @@ module.exports = function ( )
 		NomePlaneta : String,
 		ClimaPlaneta : String,
 		TerrenoPlaneta : String,
+		Filmes : [String]
+	},{
+    	versionKey: false // You should be aware of the outcome after set to false
 	});	
 
 	return db.model('Planets', Planets);

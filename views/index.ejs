@@ -45,30 +45,76 @@
     			<p> API que disponibiliza os dados dos planetas de Star Wars</p>
     		</div>
     		<div class="col-12 text-center">
-    			<button id="cadastroPlaneta" type="button" class="btn btn-dark">Cadastrar Planeta</button>
-    			<button type="button" onclick="" class="btn btn-dark">Como Usar a Api</button>
+    			<button id="cadastroPlaneta" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Cadastrar Planeta</button>
+    			<button id="ExcluirPlaneta" type="button" class="btn btn-dark" data-toggle="modal" data-target="#ExclusaoModal">Excluir Planeta</button>
+    			<button type="button" onclick="" class="btn btn-dark" >Como Usar a Api</button>
     		</div>
     	</div>
-    	<div id="formCadastro" class="col-8 invisible" style="background:white; margin-bottom: 10%; ">
-    		<form action="/add" method="post">
-			  	<div class="form-group">
-			    	<label for="NomePlaneta">Nome</label>
-			    	<input name="NomePlaneta" type="text" class="form-control" id="NomePlaneta" placeholder="Alderaan"></input>
-			  	</div>
-			  	<div class="form-group">
-			    	<label for="ClimaPlaneta">Clima</label>
-			    	<input name="ClimaPlaneta" type="text" class="form-control" id="ClimaPlaneta" placeholder="temperate"></input>
-			  	</div>
-			  	<div class="form-group">
-			    	<label for="TerrenoPlaneta">Terreno</label>
-			    	<input name="TerrenoPlaneta" type="text" class="form-control" id="TerrenoPlaneta" placeholder="grasslands" ></input>
-			  	</div>
-			  	<div class="col-12 text-right" style="padding: 10px;">
-					<button type="submit" class="btn btn-dark">Cadastrar</button>
-				</div>	
-			</form>	
-    	</div>
-  	</div>
+    	<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<h5 class="modal-title" id="exampleModalLabel">Cadastrar Planeta</h5>
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          					<span aria-hidden="true">&times;</span>
+        				</button>
+      				</div>
+      				<div class="modal-body">
+				    	<div id="formCadastro" class="col-12 invisible" style="background:white; margin-bottom: 10%; ">
+				    		<form action="/add" method="post">
+							  	<div class="form-group">
+							    	<label for="NomePlaneta">Nome</label>
+							    	<input name="NomePlaneta" type="text" class="form-control" id="NomePlaneta" placeholder="Alderaan"></input>
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="ClimaPlaneta">Clima</label>
+							    	<input name="ClimaPlaneta" type="text" class="form-control" id="ClimaPlaneta" placeholder="temperate"></input>
+							  	</div>
+							  	<div class="form-group">
+							    	<label for="TerrenoPlaneta">Terreno</label>
+							    	<input name="TerrenoPlaneta" type="text" class="form-control" id="TerrenoPlaneta" placeholder="grasslands" ></input>
+							  	</div>
+								</div>
+								<div class="modal-footer">
+									<button type="submit" class="btn btn-dark">Cadastrar</button>
+								</div>	
+							</form>	
+				    	</div>
+				    </div>
+      			</div>
+      		</div>	
+      	</div>	
+      	<div class="modal fade" id="ExclusaoModal" tabindex="-1" role="dialog" aria-labelledby="ExclusaoModal" aria-hidden="true">
+  			<div class="modal-dialog" role="document">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<h5 class="modal-title">Excluir Planeta</h5>
+       					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          					<span aria-hidden="true">&times;</span>
+        				</button>
+     				 </div>
+     				 <div class="modal-body">
+        				<form action="/del" method="post">
+        					<div class="form-group">
+    							<label for="exampleFormControlSelect1">Selecione o Planeta a ser Excluido</label>
+    							<select class="form-control" id="exampleFormControlSelect1" name="Planeta">
+	      							<option> TODOS </option>
+	      							<% for( var i = 0; i < tasks.length; i++ ) { %>
+								    	<option><%= tasks[i].NomePlaneta %></option>
+								    <% } %>
+    							</select>
+  							</div>
+        					<div class="modal-footer">
+        						<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        						<button type="submit" type="button" class="btn btn-primary">Excluir</button>
+      						</div>
+        				</form>
+      				 </div>
+    			</div>
+  			</div>
+		</div>
+    </div> 	
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

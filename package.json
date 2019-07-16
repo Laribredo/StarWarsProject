@@ -11,7 +11,24 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "mongoose": "^5.6.4",
     "mongose": "0.0.2-security",
-    "morgan": "~1.9.1"
-  }
+    "morgan": "~1.9.1",
+    "nodemon": "^1.19.1",
+    "request": "^2.88.0",
+    "require": "^2.4.20"
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laribredo/StarWarsProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Laribredo/StarWarsProject/issues"
+  },
+  "homepage": "https://github.com/Laribredo/StarWarsProject#readme",
+  "description": ""
 }
