@@ -29,12 +29,7 @@
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
   		</button>
-  		<div class="collapse navbar-collapse dark-bg" id="navbarNavAltMarkup">
-    		<div class="navbar-nav">
-      			<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      			<a class="nav-item nav-link" href="#">Documentação</a>
-    		</div>
-  		</div>
+  		<div class="collapse navbar-collapse dark-bg" id="navbarNavAltMarkup"> </div>
 	</nav>
 	<div class="row justify-content-center">
 		<div class="col-8" style="background: white; padding: 25px; margin-top: 10%;">
@@ -45,9 +40,9 @@
     			<p> API que disponibiliza os dados dos planetas de Star Wars</p>
     		</div>
     		<div class="col-12 text-center">
-    			<button id="cadastroPlaneta" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Cadastrar Planeta</button>
-    			<button id="ExcluirPlaneta" type="button" class="btn btn-dark" data-toggle="modal" data-target="#ExclusaoModal">Excluir Planeta</button>
-    			<button type="button" onclick="" class="btn btn-dark" >Como Usar a Api</button>
+    			<button id="" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">Cadastrar Planeta</button>
+    			<button id="" type="button" class="btn btn-dark" data-toggle="modal" data-target="#ExclusaoModal">Excluir Planeta</button>
+    			<button type="button"      class="btn btn-dark" data-toggle="modal" data-target="#comoUsar" >Pesquisar Planetas</button>
     		</div>
     	</div>
     	<!-- Modal -->
@@ -61,19 +56,22 @@
         				</button>
       				</div>
       				<div class="modal-body">
-				    	<div id="formCadastro" class="col-12 invisible" style="background:white; margin-bottom: 10%; ">
+				    	<div id="formCadastro" class="col-12" style="background:white; margin-bottom: 10%; ">
 				    		<form action="/add" method="post">
 							  	<div class="form-group">
 							    	<label for="NomePlaneta">Nome</label>
-							    	<input name="NomePlaneta" type="text" class="form-control" id="NomePlaneta" placeholder="Alderaan"></input>
+							    	<input name="NomePlaneta" type="text" required class="form-control" id="NomePlaneta" placeholder="Alderaan"  oninvalid="this.setCustomValidity('Preencha o nome do Planeta')"
+    									   oninput="this.setCustomValidity('')"></input>
 							  	</div>
 							  	<div class="form-group">
 							    	<label for="ClimaPlaneta">Clima</label>
-							    	<input name="ClimaPlaneta" type="text" class="form-control" id="ClimaPlaneta" placeholder="temperate"></input>
+							    	<input name="ClimaPlaneta" type="text" required  oninvalid="this.setCustomValidity('Preencha o Clima do Planeta')"
+    									   oninput="this.setCustomValidity('')" class="form-control" id="ClimaPlaneta" placeholder="temperate"></input>
 							  	</div>
 							  	<div class="form-group">
 							    	<label for="TerrenoPlaneta">Terreno</label>
-							    	<input name="TerrenoPlaneta" type="text" class="form-control" id="TerrenoPlaneta" placeholder="grasslands" ></input>
+							    	<input name="TerrenoPlaneta" type="text" required  oninvalid="this.setCustomValidity('Preencha o Terreno')"
+    									   oninput="this.setCustomValidity('')" class="form-control" id="TerrenoPlaneta" placeholder="grasslands" ></input>
 							  	</div>
 								</div>
 								<div class="modal-footer">
@@ -114,17 +112,37 @@
     			</div>
   			</div>
 		</div>
+		<div class="modal" id="comoUsar" tabindex="-1" role="dialog">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Pesquisa de Planetas</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <h6>Para pesquisar todos planetas cadastrados:</h6>
+		        <p> Complete a URL com /<b>planetas</b></p>
+		        <h6>Para pesquisar o planeta pelo nome:</h6>
+		        <p> Complete a URL com /planetas/nome/<b>NomePlaneta</b></p>
+		        <h6>Para pesquisar o planeta pelo id:</h6>
+		        <p> Complete a URL com /planetas/id/<b>idPlaneta</b></p>
+		        <p style="color:red;"><b>Os Dados serão disponibilizados em JSON</b></p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-dark" data-dismiss="modal">OK</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
     </div> 	
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
-		$(document).ready(function(){
-		  $("#cadastroPlaneta").click(function(){
-		    $("#formCadastro").toggleClass("invisible","visible");
-		  });
-		});
+		
 	</script>
   </body>
 </html>

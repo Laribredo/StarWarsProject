@@ -8,7 +8,8 @@ module.exports = function ( )
 		NomePlaneta : String,
 		ClimaPlaneta : String,
 		TerrenoPlaneta : String,
-		Filmes : [String]
+		Filmes : Number
+		//Filmes : [String]
 	},{
     	versionKey: false // You should be aware of the outcome after set to false
 	});	

@@ -1,33 +1,68 @@
 var express   = require('express');
 var router    = express.Router();
 var model     = require('./../model/tasks')( ); 
+var request   = require('request');
 
-/* GET home page. */
+
+/* GET PÁGINA PRINCIPAL */
 router.get('/', function( req, res, next ) {
   model.find(null, function(err, tasks){
   	if( err )
   	{
  		throw err;
   	}
-  	res.render('index', { title: 'Express', tasks: tasks });
+  	res.render('index', { title: 'Star Wars Planets Api', tasks: tasks });
   })
 });
 
-/* POST planets ADD */
+/* POST Adicionando Planetas */
 router.post('/add',function( req, res, next ){
 	var body = req.body;
 	body.status = false;
-	var Filmes = require('./../model/qtdFilmes')(body.NomePlaneta);
-	console.log(Filmes);
+	var ok = true;
 
-	var insert = {"NomePlaneta":body.NomePlaneta, "ClimaPlaneta": body.ClimaPlaneta, "TerrenoPlaneta": body.TerrenoPlaneta, "Filmes" : Filmes};
-	model.create(insert, function(err, tasks){
+	/*Verifica se existe nome do planeta como o mesmo nome no Banco de Dados*/
+	model.find( { NomePlaneta : body.NomePlaneta } ,function(err, tasks){
 		if(err)
 		{
 			throw err;
 		}
-		res.redirect("/");
+		if(tasks.length != 0)
+		{
+			ok = false;
+			res.status(401).send({ "erro":
+			"Planeta já Existe no Banco de Dados!"});
+		}else /*Se não efetua a inclusão no Banco*/
+		{		
+			var Filmes;
+			/*Faz o Request para obter os planetas da API*/
+			request('https://swapi.co/api/planets/?format=json',
+				function (error, response, body) 
+				{				
+					Filmes = require('./../model/qtdFilmes')(body, req.body.NomePlaneta);
+					do
+					{
+						console.log("Esperando a Requisições completa da API");
+					}while(Filmes == undefined);
+
+				    var insert = { "NomePlaneta":req.body.NomePlaneta, 
+								    "ClimaPlaneta": req.body.ClimaPlaneta, 
+								    "TerrenoPlaneta": req.body.TerrenoPlaneta, 				  
+								    "Filmes" : Filmes}
+
+					model.create(insert, function(err, tasks)
+					{
+						if(err)
+						{
+							throw err;
+						}
+						res.redirect("/");
+					});
+				}
+			);
+		}
 	});
+				
 });
 
 /* Lista todos os Planetas*/
